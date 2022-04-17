@@ -29,15 +29,18 @@ public class StarbuzzDatabaseHelper extends SQLiteOpenHelper {
 
     private void updateMyDatabase(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         if(oldVersion < 1) {
-            sqLiteDatabase.execSQL("CREATE TABLE DRINK (_ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, DESCRIPTION TEXT, IMAGE_RESOURCE_ID INTEGER);");
+            sqLiteDatabase.execSQL("CREATE TABLE DRINK (_id INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, DESCRIPTION TEXT, IMAGE_RESOURCE_ID " +
+                                           "INTEGER);");
             insertDrink(sqLiteDatabase,"Latte","Espresso and steamed milk",R.drawable.latte);
             insertDrink(sqLiteDatabase,"Cappuccino","Espresso, hot milk and steamed-milk foam",R.drawable.cappuccino);
             insertDrink(sqLiteDatabase,"Filter","Our best drip coffee",R.drawable.filter);
         }
 
-        if(oldVersion < 2) {{
+        if(oldVersion < 2) {
             sqLiteDatabase.execSQL("ALTER TABLE DRINK ADD COLUMN FAVORITE NUMERIC;");
-        }}
+        }
+
+
     }
 
     private static void insertDrink(SQLiteDatabase db, String name, String description, int resourceId) {
